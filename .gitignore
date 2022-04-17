@@ -1,0 +1,2 @@
+# Ignora os módulos do projeto em Node.js
+**/node_modules/
