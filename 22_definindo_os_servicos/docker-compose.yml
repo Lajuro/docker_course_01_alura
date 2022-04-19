@@ -1,0 +1,33 @@
+# A versão do documento do Docker Compose
+version: '3.9'
+
+# Define quais serão os serviços
+services:
+  # Define o serviço que usará o MongoDB
+  mongodb:
+    # Define a imagem do container
+    image: mongo:4.4.6
+    # Define o nome do container
+    container_name: meu-mongo
+    # Define qual a rede que o container irá usar
+    networks:
+      - compose-bridge
+
+  # Define o serviço que usará uma imagem disponível no Docker Hub
+  alurabooks:
+    # Define a imagem do container quue existe no Docker Hub
+    image: aluradocker/alura-books:1.0
+    # Define o nome do container
+    container_name: alurabooks
+    # Define qual a rede que o container irá usar
+    networks:
+      - compose-bridge
+    # Define qual a porta que será exposta de qual porta do container
+    ports:
+      - 3000:3000
+# Define as configurações de rede que serão compartilhadas entre os containers
+networks:
+  # Define a rede que será compartilhada
+  compose-bridge:
+    # Define o driver de rede que será usado
+    driver: bridge
